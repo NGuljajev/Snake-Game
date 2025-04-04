@@ -134,22 +134,22 @@ document.addEventListener('DOMContentLoaded', () => {
     // Event listeners
     document.addEventListener('keydown', (e) => {
         switch (e.key) {
-            case 'ArrowUp':
+            case 'w':
                 if (yVelocity === 1) return;
                 xVelocity = 0;
                 yVelocity = -1;
                 break;
-            case 'ArrowDown':
+            case 's':
                 if (yVelocity === -1) return;
                 xVelocity = 0;
                 yVelocity = 1;
                 break;
-            case 'ArrowLeft':
+            case 'a':
                 if (xVelocity === 1) return;
                 xVelocity = -1;
                 yVelocity = 0;
                 break;
-            case 'ArrowRight':
+            case 'd':
                 if (xVelocity === -1) return;
                 xVelocity = 1;
                 yVelocity = 0;
