@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
    
     // Game variables
     let snake = [{x: 10, y: 10}];
-    let food = {x: 5, y: 5};
+    let food = {}; // Remove hardcoded position
     let xVelocity = 0;
     let yVelocity = 0;
     let score = 0;
@@ -107,6 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
    
     function gameOver() {
+        console.log('Game Over! Snake:', snake, 'Food:', food, 'Velocity:', xVelocity, yVelocity);
         gameRunning = false;
         clearInterval(gameLoop);
         gameOverDisplay.style.display = 'flex';
@@ -119,15 +120,17 @@ document.addEventListener('DOMContentLoaded', () => {
    
     function startGame() {
         snake = [{x: 10, y: 10}];
-        xVelocity = 0;
+        xVelocity = 1; // Start moving to the right
         yVelocity = 0;
         score = 0;
         scoreDisplay.textContent = `Score: ${score}`;
         gameSpeed = 150;
         gameRunning = true;
         gameOverDisplay.style.display = 'none';
+
+        // Generate food after resetting the snake
         generateFood();
-       
+
         if (gameLoop) clearInterval(gameLoop);
         gameLoop = setInterval(updateGame, gameSpeed);
     }
@@ -164,4 +167,3 @@ document.addEventListener('DOMContentLoaded', () => {
     // Start the game
     startGame();
   });
-   
