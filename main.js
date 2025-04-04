@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     canvas.height = gridSize * tileCount;
 
     // Game variables
-    let snake = [{x: 10, y: 10}];
+    let snake = [{ x: 10, y: 10 }];
     let food = {};
     let xVelocity = 0;
     let yVelocity = 0;
@@ -23,17 +23,24 @@ document.addEventListener('DOMContentLoaded', () => {
     let gameLoop;
 
     // Draw functions
+    function drawGame() {
+        // Clear the canvas without covering the background
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        drawFood();
+        drawSnake();
+    }
+    
     function drawSnake() {
-        ctx.fillStyle = 'lime';
+        ctx.fillStyle = 'rgba(0, 255, 0, 0.8)'; // Slightly transparent lime
         snake.forEach(segment => {
             ctx.fillRect(segment.x * gridSize, segment.y * gridSize, gridSize, gridSize);
-            ctx.strokeStyle = '#111';
+            ctx.strokeStyle = 'rgba(0, 0, 0, 0.3)';
             ctx.strokeRect(segment.x * gridSize, segment.y * gridSize, gridSize, gridSize);
         });
     }
-
+    
     function drawFood() {
-        ctx.fillStyle = 'red';
+        ctx.fillStyle = 'rgba(255, 0, 0, 0.8)'; // Slightly transparent red
         ctx.beginPath();
         ctx.arc(
             food.x * gridSize + gridSize / 2,
@@ -45,16 +52,9 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.fill();
     }
 
-    function drawGame() {
-        ctx.fillStyle = '#111';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-        drawFood();
-        drawSnake();
-    }
-
     // Game logic
     function moveSnake() {
-        const head = {x: snake[0].x + xVelocity, y: snake[0].y + yVelocity};
+        const head = { x: snake[0].x + xVelocity, y: snake[0].y + yVelocity };
 
         if (head.x < 0 || head.x >= tileCount || head.y < 0 || head.y >= tileCount) {
             gameOver();
@@ -115,7 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function startGame() {
-        snake = [{x: 10, y: 10}];
+        snake = [{ x: 10, y: 10 }];
         xVelocity = 1;
         yVelocity = 0;
         score = 0;
@@ -150,6 +150,26 @@ document.addEventListener('DOMContentLoaded', () => {
                 yVelocity = 0;
                 break;
             case 'd':
+                if (xVelocity === -1) return;
+                xVelocity = 1;
+                yVelocity = 0;
+                break;
+            case 'ArrowUp':
+                if (yVelocity === 1) return;
+                xVelocity = 0;
+                yVelocity = -1;
+                break;
+            case 'ArrowDown':
+                if (yVelocity === -1) return;
+                xVelocity = 0;
+                yVelocity = 1;
+                break;
+            case 'ArrowLeft':
+                if (xVelocity === 1) return;
+                xVelocity = -1;
+                yVelocity = 0;
+                break;
+            case 'ArrowRight':
                 if (xVelocity === -1) return;
                 xVelocity = 1;
                 yVelocity = 0;

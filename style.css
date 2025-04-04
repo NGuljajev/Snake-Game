@@ -22,7 +22,7 @@ body {
   border: 2px solid #444;
   /* Checkered background pattern */
   background-color: #1a1a1a;
-  background-image: 
+  background-image:
       linear-gradient(45deg, #2a2a2a 25%, transparent 25%),
       linear-gradient(-45deg, #2a2a2a 25%, transparent 25%),
       linear-gradient(45deg, transparent 75%, #2a2a2a 75%),
@@ -31,7 +31,7 @@ body {
   background-position: 0 0, 0 20px, 20px -20px, -20px 0px;
   box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.7);
 }
-
+ 
 #score-display {
   margin-top: 15px;
   font-size: 24px;
@@ -48,10 +48,10 @@ body {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.85);
   color: white;
-  display: none;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  display: flex; /* Ensure flex layout */
+  flex-direction: column; /* Stack items vertically */
+  align-items: center; /* Center items horizontally */
+  justify-content: center; /* Center items vertically */
   font-size: 48px;
   font-weight: bold;
   border-radius: 8px;
@@ -82,4 +82,18 @@ body {
 
 #start-btn {
   margin-bottom: 15px;
+}
+
+#restart-btn {
+  margin-top: 20px; /* Space between "Game Over" text and button */
+  padding: 12px 25px;
+  font-size: 18px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: block; /* Ensure the button is visible */
 }
